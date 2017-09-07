@@ -21,7 +21,7 @@ public class FindIfAnagram {
 			if (len != s[i].length())
 				return false;
 		}
-		int score = getScore(s[0]);
+		long score = getScore(s[0]);
 		for (int i = 1; i < s.length; i++) {
 			if (score != getScore(s[i]))
 				return false;
@@ -29,15 +29,15 @@ public class FindIfAnagram {
 		return true;
 	}
 
-	private static int getScore(String string) {
+	private static long getScore(String string) {
 		string = string.toUpperCase();
 		if (map == null) {
 			initializeMap();
 		}
 		char[] charArray = string.toCharArray();
-		int score = 0;
+		long score = 1;
 		for (char c : charArray) {
-			score = score + map.get(c);
+			score = score * map.get(c);
 		}
 		return score;
 	}
@@ -84,7 +84,6 @@ public class FindIfAnagram {
 	}
 
 	private static boolean isPrime(int n) {
-//		int sqrt = (int) Math.sqrt(n);
 		for (int i = 2; i < n/2; i++) {
 			if (n % i == 0)
 				return false;
